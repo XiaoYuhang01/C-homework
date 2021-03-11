@@ -1,0 +1,7 @@
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\bin\Debug\ConsoleApp3.exe.config
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\bin\Debug\ConsoleApp3.exe
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\bin\Debug\ConsoleApp3.pdb
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\obj\Debug\ConsoleApp3.csprojAssemblyReference.cache
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\obj\Debug\ConsoleApp3.csproj.CoreCompileInputs.cache
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\obj\Debug\ConsoleApp3.exe
+D:\2019302080186\Homework02\ConsoleApp3\ConsoleApp3\obj\Debug\ConsoleApp3.pdb
