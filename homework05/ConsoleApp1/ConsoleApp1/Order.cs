@@ -24,9 +24,9 @@ namespace ConsoleApp1
         //      用于判定是否有指定货物的方法，方便在查询时调用
         public bool Search(string h)
         {
-            foreach(Cargo a in tradeName)
+            foreach(OrderDetails a in OrderDetailsList)
             {
-                if(a.CargoName == h) { return true; }
+                if(a.CargoExample.CargoName == h) { return true; }
             }
             return false;
         }
