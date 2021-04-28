@@ -42,12 +42,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dataGridViewOrder = new System.Windows.Forms.DataGridView();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dataGridViewOrderDetails = new System.Windows.Forms.DataGridView();
             this.orderNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clientDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.orderAmountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSourceOrder = new System.Windows.Forms.BindingSource(this.components);
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dataGridViewOrderDetails = new System.Windows.Forms.DataGridView();
             this.cargoExampleDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargoExamplePriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cargoNumberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,9 +56,9 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrder)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrder)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderDetails)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrder)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -208,6 +208,32 @@
             this.dataGridViewOrder.Size = new System.Drawing.Size(596, 243);
             this.dataGridViewOrder.TabIndex = 0;
             // 
+            // orderNumberDataGridViewTextBoxColumn
+            // 
+            this.orderNumberDataGridViewTextBoxColumn.DataPropertyName = "orderNumber";
+            this.orderNumberDataGridViewTextBoxColumn.HeaderText = "订单号";
+            this.orderNumberDataGridViewTextBoxColumn.Name = "orderNumberDataGridViewTextBoxColumn";
+            this.orderNumberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // clientDataGridViewTextBoxColumn
+            // 
+            this.clientDataGridViewTextBoxColumn.DataPropertyName = "client";
+            this.clientDataGridViewTextBoxColumn.HeaderText = "客户名";
+            this.clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
+            this.clientDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // orderAmountDataGridViewTextBoxColumn
+            // 
+            this.orderAmountDataGridViewTextBoxColumn.DataPropertyName = "orderAmount";
+            this.orderAmountDataGridViewTextBoxColumn.HeaderText = "订单总金额";
+            this.orderAmountDataGridViewTextBoxColumn.Name = "orderAmountDataGridViewTextBoxColumn";
+            this.orderAmountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.orderAmountDataGridViewTextBoxColumn.Width = 130;
+            // 
+            // bindingSourceOrder
+            // 
+            this.bindingSourceOrder.DataSource = typeof(ConsoleApp1.Order);
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.dataGridViewOrderDetails);
@@ -237,38 +263,11 @@
             this.dataGridViewOrderDetails.Size = new System.Drawing.Size(596, 243);
             this.dataGridViewOrderDetails.TabIndex = 0;
             // 
-            // orderNumberDataGridViewTextBoxColumn
-            // 
-            this.orderNumberDataGridViewTextBoxColumn.DataPropertyName = "orderNumber";
-            this.orderNumberDataGridViewTextBoxColumn.HeaderText = "订单号";
-            this.orderNumberDataGridViewTextBoxColumn.Name = "orderNumberDataGridViewTextBoxColumn";
-            this.orderNumberDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // clientDataGridViewTextBoxColumn
-            // 
-            this.clientDataGridViewTextBoxColumn.DataPropertyName = "client";
-            this.clientDataGridViewTextBoxColumn.HeaderText = "客户名";
-            this.clientDataGridViewTextBoxColumn.Name = "clientDataGridViewTextBoxColumn";
-            this.clientDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // orderAmountDataGridViewTextBoxColumn
-            // 
-            this.orderAmountDataGridViewTextBoxColumn.DataPropertyName = "orderAmount";
-            this.orderAmountDataGridViewTextBoxColumn.HeaderText = "订单总金额";
-            this.orderAmountDataGridViewTextBoxColumn.Name = "orderAmountDataGridViewTextBoxColumn";
-            this.orderAmountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.orderAmountDataGridViewTextBoxColumn.Width = 130;
-            // 
-            // bindingSourceOrder
-            // 
-            this.bindingSourceOrder.DataSource = typeof(ConsoleApp1.Order);
-            // 
             // cargoExampleDataGridViewTextBoxColumn
             // 
             this.cargoExampleDataGridViewTextBoxColumn.DataPropertyName = "CargoExample";
-            this.cargoExampleDataGridViewTextBoxColumn.HeaderText = "货物";
+            this.cargoExampleDataGridViewTextBoxColumn.HeaderText = "货物名";
             this.cargoExampleDataGridViewTextBoxColumn.Name = "cargoExampleDataGridViewTextBoxColumn";
-            this.cargoExampleDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // cargoExamplePriceDataGridViewTextBoxColumn
             // 
@@ -282,7 +281,6 @@
             this.cargoNumberDataGridViewTextBoxColumn.DataPropertyName = "CargoNumber";
             this.cargoNumberDataGridViewTextBoxColumn.HeaderText = "货物数量";
             this.cargoNumberDataGridViewTextBoxColumn.Name = "cargoNumberDataGridViewTextBoxColumn";
-            this.cargoNumberDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // detailPriceDataGridViewTextBoxColumn
             // 
@@ -306,9 +304,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrder)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrder)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewOrderDetails)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSourceOrder)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -328,16 +326,19 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.DataGridView dataGridViewOrder;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.DataGridView dataGridViewOrderDetails;
+        private System.Windows.Forms.Label labelNotice;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderAmountDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.DataGridView dataGridViewOrderDetails;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderNumberDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clientDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn orderAmountDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargoExampleDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargoExamplePriceDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cargoNumberDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailPriceDataGridViewTextBoxColumn;
-        private System.Windows.Forms.Label labelNotice;
     }
 }
 

@@ -8,9 +8,9 @@ namespace ConsoleApp1
 {
     public class Order
     {
-        public int orderNumber { get; }     //订单号
+        public int orderNumber { get; set; }     //订单号
         // public List<Cargo> tradeName { get; }     //商品名称
-        public Customer client { get; }     //客户
+        public Customer client { get; set; }     //客户
         public double orderAmount {
             get {
                 double sum = 0;

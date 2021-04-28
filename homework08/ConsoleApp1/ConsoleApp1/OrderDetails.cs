@@ -8,9 +8,9 @@ namespace ConsoleApp1
 {
     public class OrderDetails
     {
-        public Cargo CargoExample { get; }
+        public Cargo CargoExample { get; set; }
         public double CargoExamplePrice { get => CargoExample.CargoPrice; }
-        public int CargoNumber { get; }
+        public int CargoNumber { get; set; }
         public double DetailPrice { get => CargoNumber * CargoExamplePrice; }
 
         public OrderDetails(Cargo cargo, int number)

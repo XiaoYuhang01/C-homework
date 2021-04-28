@@ -97,6 +97,7 @@ namespace WindowsFormsApp1
                 }
             }
             labelNotice.Text = "导入成功";
+            bindingSourceOrder.ResetBindings(false);
         }
 
         private void buttonModify_Click(object sender, EventArgs e)
@@ -105,5 +106,7 @@ namespace WindowsFormsApp1
             modifyForm.ShowDialog();
             labelNotice.Text = "修改成功";
         }
+
+       
     }
 }
