@@ -79,7 +79,7 @@
   <ItemGroup>
     <Compile Include="Cargo.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Model1.cs" />
+    <Compile Include="OrderContext.cs" />
     <Compile Include="NumberCompare.cs" />
     <Compile Include="OrderException.cs" />
     <Compile Include="Order.cs" />

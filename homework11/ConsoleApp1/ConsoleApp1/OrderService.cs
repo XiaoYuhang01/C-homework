@@ -1,15 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace ConsoleApp1
 {
     public class OrderService
     {
-        public List<Order> OrderList = new List<Order>();      //一个包含所有订单对象的列表
-        
+        public List<Order> OrderList
+        {
+            get
+            {
+                using (var orderctx = new OrderContext())
+                {
+                    var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer");
+                    return result.ToList<Order>();
+                }
+            }
+
+        }//一个包含所有订单对象的列表
         //      默认按订单号排序
         //      添加订单
         public void Add()
@@ -67,63 +78,67 @@ namespace ConsoleApp1
 
             Order order1 = new Order(num, customerExample, DetailsExample);
 
-            int n = 0;
-            foreach (Order a in OrderList)
-            {
-                if (!order1.Equals(a)) { n++; }
-            }
-            if (n == OrderList.Count) { OrderList.Add(order1); }
-            else { Console.WriteLine("该订单已经添加过"); }
+                using (var orderctx = new OrderContext())
+                {
+                    orderctx.Entry(order1).State = EntityState.Added;
+                    orderctx.SaveChanges();
+                }
+            
         }
 
         //      按订单号查询
-        public List<Order> SearchByNumber(int h)
+        public Order SearchByNumber(int h)
         {
-            var ResultByNumber = from a in OrderList
-                                 where a.orderNumber == h
-                                 orderby a.orderAmount 
-                                 select a;
-            return ResultByNumber.ToList();
+            using (var orderctx = new OrderContext())
+            {
+                var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer")
+                  .SingleOrDefault(o => o.orderNumber == h);
+                return result;
+            }
         }
 
         //      按商品名称查询
         public List<Order> SearchByCargo(string h)
         {
-            var ResultByCargo = from a in OrderList
-                                where a.Search(h) == true
-                                 orderby a.orderAmount
-                                 select a;
-            return ResultByCargo.ToList();
+            using (var orderctx = new OrderContext())
+            {
+                var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer")
+                    .Where(order => order.OrderDetailsList.Any(item => item.CargoExample.CargoName == h));
+                return result.ToList();
+            }
         }
 
         //      按客户查询
         public List<Order> SearchByClient(string h)
         {
-            var ResultByClient = from a in OrderList
-                                 where a.client.CustomerName == h
-                                 orderby a.orderAmount
-                                 select a;
-            return ResultByClient.ToList();
+            using (var orderctx = new OrderContext())
+            {
+                var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer")
+                  .Where(order => order.client.CustomerName == h).ToList();
+                return result;
+            }
         }
 
         //      按大于指定订单金额查询
         public List<Order> SearchMorethanAmount(double h)
         {
-            var ResultMorethanAmount = from a in OrderList
-                                 where a.orderAmount > h
-                                 orderby a.orderAmount
-                                 select a;
-            return ResultMorethanAmount.ToList();
+            using (var orderctx = new OrderContext())
+            {
+                var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer")
+                .Where(order => order.orderAmount > h);
+                return result.ToList();
+            }
         }
 
-        //      按大于指定订单金额查询
+        //      按小于指定订单金额查询
         public List<Order> SearchLessthanAmount(double h)
         {
-            var ResultLessthanAmount = from a in OrderList
-                                       where a.orderAmount < h
-                                       orderby a.orderAmount
-                                       select a;
-            return ResultLessthanAmount.ToList();
+            using (var orderctx = new OrderContext())
+            {
+                var result = orderctx.Orders.Include(o => o.OrderDetailsList.Select(d => d.CargoExample)).Include("Customer")
+                .Where(order => order.orderAmount < h);
+                return result.ToList();
+            }
         }
 
         public void Search()
@@ -136,7 +151,7 @@ namespace ConsoleApp1
                 case "1":
                     Console.WriteLine("输入订单号");
                     string i1 = Console.ReadLine();
-                    Console.WriteLine(SearchByNumber(Int32.Parse(i1)).First());
+                    Console.WriteLine(SearchByNumber(Int32.Parse(i1)));
                     break;
 
                 case "2":
@@ -172,17 +187,17 @@ namespace ConsoleApp1
 
         }
         //      按订单号删除订单
-        public void DeletOrder()
+        public void DeletOrder(int h)
         {
-            Console.WriteLine("请输入要删除的订单号");
-            int h = Int32.Parse(Console.ReadLine());
-            foreach (Order a in OrderList)
+            using (var orderctx = new OrderContext())
             {
-                if (a.orderNumber == h) { OrderList.Remove(a); return; }
+                var result = orderctx.Orders.Include("OrderDetailsList").SingleOrDefault(o => o.orderNumber == h);
+                if (result == null) return;
+                orderctx.OrderDetails.RemoveRange(result.OrderDetailsList);
+                orderctx.Orders.Remove(result);
+                orderctx.SaveChanges();
             }
-            Console.WriteLine("需要删除的订单号不存在,请重新核实");
         }
-
         //      给定条件修改订单
         public void ModifyOrder()
         {

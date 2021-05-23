@@ -26,7 +26,7 @@ namespace ConsoleApp1
             do
             {
                 Console.WriteLine("请选择服务类型:");
-                Console.WriteLine("1.新增订单 2.删除订单 3.查询订单 4.修改订单");
+                Console.WriteLine("1.新增订单  3.查询订单 4.修改订单"); //2.删除订单
                 string i = Console.ReadLine();
 
                 switch (i)
@@ -36,7 +36,7 @@ namespace ConsoleApp1
                         break;
 
                     case "2":
-                        ServiceExample.DeletOrder();
+                        //ServiceExample.DeletOrder();
                         break;
 
                     case "3":
